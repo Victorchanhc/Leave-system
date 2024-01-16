@@ -1,0 +1,26 @@
+.login-container {
+    width: 50vw;
+    min-width: 350px;
+    max-width: 500px;
+    background-color: rgba(182, 182, 182, 0.418);
+    border-radius: 10px;
+}
+
+.container {
+    height: 100vh;
+}
+
+.bandLogo-content {
+    width: 120px;
+}
+
+body {
+    background-image: url(./pic/loginbackground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50%;
+}
+.btn{
+    font-size: smaller;
+}
