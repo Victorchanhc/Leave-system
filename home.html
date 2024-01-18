@@ -37,71 +37,23 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0  align-items-sm-start" id="menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
+                            <a href="home.html" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1  d-sm-inline">Home</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1  d-sm-inline">Dashboard</span>
+                        <li class="nav-item">
+                            <a href="/lesson.html" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1  d-sm-inline">Lesson</span>
                             </a>
-                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Item</span>
-                                        1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Item</span>
-                                        2
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/myAccount.html" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1  d-sm-inline">My Account</span>
+                            </a>
                         </li>
                         <li>
                             <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1  d-sm-inline">Orders</span></a>
-                        </li>
-                        <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1  d-sm-inline">Bootstrap</span></a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Item</span>
-                                        1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Item</span>
-                                        2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1  d-sm-inline">Products</span>
-                            </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Product</span>
-                                        1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Product</span>
-                                        2</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Product</span>
-                                        3</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class=" d-sm-inline">Product</span>
-                                        4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1  d-sm-inline">Customers</span>
+                                <i class="fs-4 bi-people"></i> <span class="ms-1  d-sm-inline">Logout</span>
                             </a>
                         </li>
                     </ul>
@@ -126,7 +78,30 @@
                 </div>
             </nav>
             <div class="col py-3">
-                Content area...
+                <div class="main-container">
+                    <h1 class="titleBar welccome mb-4 text-center">Welcome to STFC</h1>
+                    <div class="card" style="width:100%">
+                        <!-- participant name can use $<name> -->
+                        <h5 class="card-title participantName ms-4 mt-3">Jacko</h5>
+                        <div class="card-body">
+                            <div class="card text-bg-light">
+                                <!-- same with the participant's lesson -->
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="lessonInformation-content">
+                                        <!-- import the lesson information -->
+                                        <h5 class="lessonName">星期日 晚上 荃灣</h5>
+                                        <div class="lessonDate">日期 : 7/1 14/1 21/1 28/1</div>
+                                        <div class="lessonTime">時間 : 11:00 - 13:00</div>
+                                        <div class="lessonVenus">地點 : 城門谷五人場</div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-primary btn-sm" type="button">Button</button>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
