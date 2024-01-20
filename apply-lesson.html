@@ -20,8 +20,7 @@
                 data-bs-target="#sidebar-container" aria-controls="sidebar-container"
                 aria-label="Toggle docs navigation">
                 <span class="navbar-toggler-icon"></span>
-                <nav>
-
+                <nav></nav>
             </button>
             <a class="navbar-brand ms-3" href="#"><img src="./pic/LOGO.png" width="50px" alt=""><span
                     class="ms-3 text-white">SouthTeenFC</span></a>
@@ -80,74 +79,82 @@
             </nav>
             <div class="col py-3">
                 <div class="main-container">
-                    <h1 class="titleBar welccome mb-4 text-center">Welcome to STFC</h1>
-                    <div class="card" style="width:100%">
-                        <!-- participant name can use $<name> -->
-                        <h5 class="card-title participantName ms-4 mt-3">Jacko</h5>
-                        <div class="card-body lesson-content">
-                            <div class="card text-bg-light">
-                                <!-- same with the participant's lesson -->
-                                <div class="card-body d-flex justify-content-between">
-                                    <div class="lessonInformation-content">
-                                        <!-- import the lesson information -->
-                                        <h5 class="lessonName">星期日 晚上 荃灣</h5>
-                                        <div class="lessonDate">日期 : 7/1 14/1 21/1 28/1</div>
-                                        <div class="lessonTime">時間 : 11:00 - 13:00</div>
-                                        <div class="lessonVenus">地點 : 城門谷五人場</div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn btn-outline-dark btn-sm editButton" type="button"
-                                            data-bs-toggle="collapse" data-bs-target=".multi-collapse"
-                                            aria-expanded="false"
-                                            aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3">>
-                                        </button>
-                                    </div>
+                    <h1 class="titleBar welcome mb-4 text-center">Lesson</h1>
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="lessonInformation-content">
+                                <!-- import the lesson information -->
+                                <h5 class="lessonName">星期日 晚上 荃灣</h5>
+                                <div class="lessonDate">日期 : 7/1 14/1 21/1 28/1</div>
+                                <div class="lessonTime">時間 : 11:00 - 13:00</div>
+                                <div class="lessonVenus">地點 : 城門谷五人場</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-outline-dark btn-sm" href="lesson.html" id="go-back">Change</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4 ms-1">Participant</h4>
+                    <div class="card mt-2">
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="participantInformation-content">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="lessonTimeRadio1"
+                                        id="lessonTimeRadio1" value="option1" checked>
+                                    <label class="form-check-label" for="lessonTimeRadio1">
+                                        Jacko
+                                    </label>
                                 </div>
-                                <div class="row px-3">
-                                    <div class="col-md-4">
-                                        <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                            <div class="card card-body">
-                                                <p>原訓練日期</p>
-                                                <select class="form-select-sm" aria-label="Default select example">
-                                                    <option selected>...</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <div class="participantInformation-content">
+                                <button class="btn btn-sm editButton" type="button" data-bs-toggle="collapse"
+                                    data-bs-target=".multi-collapse" aria-expanded="false"
+                                    aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3">
+                                    + Add New Player
+                                </button>
+                                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <div class="container-fluid card-body">
+                                        <form class="px-3">
+                                            <div class="mb-3">
+                                                <label for="Inputusername" class="form-label">English Fullname</label>
+                                                <input type="text" class="form-control" placeholder="Enter your fullname">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                            <div class="card card-body px-2 mb-2">
-                                                <p>更改日期</p>
-                                                <select class="form-select-sm" aria-label="Default select example">
-                                                    <option selected>...</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </div> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="collapse multi-collapse" id="multiCollapseExample3">
-                                            <div class="card card-body px-2 mb-2">
-                                                <p>原因</p>
-                                                <select class="form-select-sm" aria-label="Default select example">
-                                                    <option selected>...</option>
-                                                    <option value="1">天雨取消</option>
-                                                    <option value="2">事假</option>
-                                                    <option value="3">病假</option>
-                                                </select>
+                                            <div class="mb-3">
+                                                <label for="Inputphone" class="form-label">English Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter your other name">
                                             </div>
-                                        </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Chinese fullname</label>
+                                                <input type="text" class="form-control" placeholder="中文全名">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Date Of Born</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputPassword1" class="form-label">Sex</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>choose one</option>
+                                                    <option value="Boy">Boy</option>
+                                                    <option value="Girl">Girl</option>
+                                                  </select>
+                                            </div>
+                                            <div class="row gap-1 px-2 mb-4">
+                                                <button type="submit" class="col btn btn-dark">Confirm</button>
+                                                <!-- <a href="#">Forget password?</a> -->
+                                            </div>
+                                        </form>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div><!-- </div>END MAIN CONTAINER// -->
             </div>
         </div>
     </div>
