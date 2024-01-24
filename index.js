@@ -40,6 +40,7 @@ function autoputin() {
 
 
 }
+
 const parentEdit = document.querySelector('#parent-info')
 const playerEdit = document.querySelector('#player-info')
 
@@ -153,3 +154,4 @@ document.querySelector('#player-EditButton')
         playerautoputin()
 
     })
+
