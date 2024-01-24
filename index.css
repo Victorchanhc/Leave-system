@@ -14,13 +14,26 @@
     width: 120px;
 }
 
-body {
+/* body {
     background-image: url(./pic/loginbackground.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: 50%;
-}
+} */
 .btn{
     font-size: smaller;
+}
+
+
+.parent-content {
+    height: 50px;
+}
+
+.player-content {
+    height: 50px;
+}
+
+.lessonInformation-content > div{
+    font-size: small;
 }

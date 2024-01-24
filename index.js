@@ -13,28 +13,143 @@
 //         </ul>
 //       </div>`
 // //     });
-// const lessonContainer = document.querySelector('#allLessonContainer')
+function playerautoputin() {
+    const plfnInput = document.querySelector('#player-fullName')
+    const plnnInput = document.querySelector('#player-nickName')
+    const plcnInput = document.querySelector('#player-chineseName')
+    const pldobInput = document.querySelector('#player-dob')
+    const plgeInput = document.querySelector('#player-gen')
 
-// document.querySelector('#joinButton')
-//     .addEventListener('click', function () {
-//         h
-        // lessonContainer.innerHTML = '';
-        // lessonContainer.innerHTML +=
-        //     `<div class="row">
-        //         <div class="col-md-4 d-flex">
-        //             <a class="btn btn-outline-dark btn-sm" href="lesson.html" id="go-back">Go back!</a>
-        //         </div>
-        //         <div class="col-md-4 d-flex">
-        //             <h1 class="titleBar welcome mb-4 text-center">Lesson</h1>
-        //         </div>
-        //     </div>
-        //     <div class="card card-body d-flex justify-content-between">
-        //         <div class="lessonInformation-content">
-        //             <!-- import the lesson information -->
-        //             <h5 class="lessonName">星期日 晚上 荃灣</h5>
-        //             <div class="lessonDate">日期 : 7/1 14/1 21/1 28/1</div>
-        //             <div class="lessonTime">時間 : 11:00 - 13:00</div>
-        //             <div class="lessonVenus">地點 : 城門谷五人場</div>
-        //         </div>
-        //     </div>`;
-    // })
+    plfnInput.value = `aeroplane`
+    plnnInput.value = `aer`
+    plcnInput.value = `陳大文`
+    pldobInput.value = `18/04/2016`
+    plgeInput.value = `option`
+}
+
+function autoputin() {
+    const pnInput = document.querySelector('#parent-name')
+    const peInput = document.querySelector('#parent-email')
+    const ppInput = document.querySelector('#parent-phone')
+
+
+
+    pnInput.value = "aeroplanec"
+    peInput.value = "victorchan@gmail.com"
+    ppInput.value = `64099717`
+
+
+}
+const parentEdit = document.querySelector('#parent-info')
+const playerEdit = document.querySelector('#player-info')
+
+document.querySelector('#parent-EditButton')
+    .addEventListener('click', function () {
+
+        // parentEdit.innerHTML = '';
+        parentEdit.innerHTML =
+            `<form class="parent-info-content">
+            <div class="parent-content mb-5 d-flex">
+                <div class="pt-1" style="width: 50px">
+                    <i class="fa-solid fa-user fa-lg"></i>
+                </div>
+                <div">
+                    <label for="parent-name" class="form-label">Parent Name</label>
+                    <div>
+                        <input type="text" class="form-control" id="parent-name"required>
+                    </div>
+                </div>
+            </div>
+            <div class="parent-content mb-5 d-flex">
+                <div style="width: 50px">
+                    <i class="fa-solid fa-envelope fa-lg"></i>
+                </div>
+                <div>
+                    <label for="parent-email" class="form-label">Parent Email</label>
+                    <div>
+                        <input type="text" class="form-control" id="parent-email"required>
+                    </div>
+                </div>
+            </div>
+            <div class="parent-content d-flex">
+                <div style="width: 50px">
+                    <i class="fa-solid fa-phone fa-lg"></i>
+                </div>
+                <div>
+                    <label for="parent-phone" class="form-label">Mobile Phone</label>
+                    <div>
+                        <input type="text" class="form-control" id="parent-phone" required>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-5">
+                <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+            </div>
+        </form>`;
+        autoputin()
+
+    })
+
+document.querySelector('#player-EditButton')
+    .addEventListener('click', function () {
+
+        // parentEdit.innerHTML = '';
+        playerEdit.innerHTML =
+            `<form class="player-info-content">
+                <div class="player-content mb-5 d-flex">
+                    <div class="pt-1" style="width: 50px">
+                        <i class="fa-solid fa-user fa-lg me-4"></i>
+                    </div>
+                    <div>
+                        <label for="player-fullName" class="form-label">Full name</label>
+                        <div><input type="text" class="form-control" id="player-fullName" required></div>
+                    </div>
+                </div>
+                <div class="player-content mb-5 d-flex">
+                    <div style="width: 50px">
+                    </div>
+                    <div>
+                        <label for="player-nickName" class="form-label">Nick name</label>
+                        <div><input type="text"  class="form-control" id="player-nickName" required></div>
+                    </div>
+                </div>
+                <div class="player-content mb-5 d-flex">
+                    <div style="width: 50px">    
+                    </div>
+                    <div>
+                        <label for="player-chineseName" class="form-label">Chinese name</label>
+                        <div><input type="text" class="form-control" id="player-chineseName"></div>
+                    </div>
+                </div>
+                <div class="player-content mb-5 d-flex">
+                    <div style="width: 50px">
+                        <i class="fa-solid fa-calendar-days fa-lg me-4"></i>
+                    </div>
+                    <div>
+                        <label for="player-dob" class="form-label">Date of birth</label>
+                        <div><input type="date" class="form-control" id="player-dob" required></div>
+                    </div>
+                </div>
+                <div class="player-content d-flex">
+                    <div style="width: 50px">
+                        <i class="fa-solid fa-venus-mars fa-lg me-4"></i>
+                    </div>
+                    <div>
+                        <label for="player-gen" class="form-label">Gender</label>
+                        <div>
+                            <select class="form-select" aria-label="Default select example" id="player-gen required>
+                                <option selected>Select...</option>
+                                <option value="Boy">Male</option>
+                                <option value="Girl">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-5">
+                <button type="submit" class="btn btn-primary btn-sm">Confirm</button>
+            </div>
+    </form>`;
+        playerautoputin()
+
+    })

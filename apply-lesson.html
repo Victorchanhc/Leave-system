@@ -47,7 +47,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/myAccount.html" class="nav-link align-middle px-0">
+                            <a href="myAccount.html" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1  d-sm-inline">My Account</span>
                             </a>
                         </li>
@@ -111,41 +111,40 @@
                     <div class="card mt-2">
                         <div class="card-body">
                             <div class="participantInformation-content">
-                                <button class="btn btn-sm editButton" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-sm container-fluid text-start" type="button" data-bs-toggle="collapse"
                                     data-bs-target=".multi-collapse" aria-expanded="false"
-                                    aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3">
+                                    aria-controls="multiCollapseExample1 ">
                                     + Add New Player
                                 </button>
                                 <div class="collapse multi-collapse" id="multiCollapseExample1">
                                     <div class="container-fluid card-body">
                                         <form class="px-3">
-                                            <div class="mb-3">
-                                                <label for="Inputusername" class="form-label">English Fullname</label>
-                                                <input type="text" class="form-control" placeholder="Enter your fullname">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" placeholder="Enter your fullname" required>
+                                                <label for="Inputusername" class="form-label">English Full name</label>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="Inputphone" class="form-label">English Name</label>
-                                                <input type="text" class="form-control" placeholder="Enter your other name">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" placeholder="Enter your other name" required>
+                                                <label for="Inputphone" class="form-label">Nick Name</label>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" placeholder="中文全名" required>
                                                 <label for="exampleInputEmail1" class="form-label">Chinese fullname</label>
-                                                <input type="text" class="form-control" placeholder="中文全名">
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Date Of Born</label>
-                                                <input type="date" class="form-control">
+                                            <div class="form-floating mb-3">
+                                                <input type="date" class="form-control" required>
+                                                <label for="exampleInputPassword1" class="form-label">Date of birth</label>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Sex</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>choose one</option>
-                                                    <option value="Boy">Boy</option>
-                                                    <option value="Girl">Girl</option>
-                                                  </select>
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected disabled value="">Select...</option>
+                                                    <option value="Boy">Male</option>
+                                                    <option value="Girl">Female</option>
+                                                </select>
+                                                <label for="exampleInputPassword1" class="form-label">Gender</label>
                                             </div>
                                             <div class="row gap-1 px-2 mb-4">
                                                 <button type="submit" class="col btn btn-dark">Confirm</button>
-                                                <!-- <a href="#">Forget password?</a> -->
                                             </div>
                                         </form>
                                         
