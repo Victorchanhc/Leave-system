@@ -115,3 +115,5 @@ python_modules/
 
 # Deepscan Files
 .dccache
+
+.pgsql

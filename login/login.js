@@ -37,7 +37,7 @@ document.querySelector('#registerButton')
             </form>
             <div class="px-3 gap-3 mb-4">
                 You have an account ? Please Login !
-                <a href="login.html" type="button" class="btn btn-outline-light btn-sm">Login <i
+                <a href="index.html" type="button" class="btn btn-outline-light btn-sm">Login <i
                         class="bi bi-arrow-right"></i></a>
             </div>`
     })
