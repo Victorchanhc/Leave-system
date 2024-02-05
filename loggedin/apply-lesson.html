@@ -37,7 +37,7 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0  align-items-sm-start" id="menu">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link align-middle px-0">
+                            <a href="loggedIn.html" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-house"></i> <span class="ms-1  d-sm-inline">Home</span>
                             </a>
                         </li>
@@ -52,29 +52,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link px-0 align-middle">
+                            <a href="/logout" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1  d-sm-inline">Logout</span>
                             </a>
                         </li>
                     </ul>
                     <hr>
-                    <div class="dropdown pb-4">
-                        <a href="#" class="d-flex  text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                                class="rounded-circle">
-                            <span class=" d-sm-inline mx-1">loser</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
                 </div>
             </nav>
             <div class="col py-3">
@@ -118,28 +101,28 @@
                                 </button>
                                 <div class="collapse multi-collapse" id="multiCollapseExample1">
                                     <div class="container-fluid card-body">
-                                        <form class="px-3">
+                                        <form action="/addNewPlayer" method="post" class="px-3">
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" placeholder="Enter your fullname" required>
+                                                <input name="englishFullName" type="text" class="form-control" placeholder="Enter your fullname" required>
                                                 <label for="Inputusername" class="form-label">English Full name</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" placeholder="Enter your other name" required>
+                                                <input name="nickName" type="text" class="form-control" placeholder="Enter your other name" required>
                                                 <label for="Inputphone" class="form-label">Nick Name</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" placeholder="中文全名" required>
+                                                <input name="chineseFullName" type="text" class="form-control" placeholder="中文全名" required>
                                                 <label for="exampleInputEmail1" class="form-label">Chinese fullname</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="date" class="form-control" required>
+                                                <input name="dateOfBirth" type="date" class="form-control" required>
                                                 <label for="exampleInputPassword1" class="form-label">Date of birth</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <select class="form-select" aria-label="Default select example" required>
+                                                <select name="gender" class="form-select" aria-label="Default select example" required>
                                                     <option selected disabled value="">Select...</option>
-                                                    <option value="Boy">Male</option>
-                                                    <option value="Girl">Female</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
                                                 </select>
                                                 <label for="exampleInputPassword1" class="form-label">Gender</label>
                                             </div>

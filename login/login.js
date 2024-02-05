@@ -4,30 +4,30 @@ const logcontainer = document.querySelector('#loginContainer')
 document.querySelector('#registerButton')
     .addEventListener('click', function () {
         logcontainer.innerHTML =
-            `<form class="px-3">
+            `<form action="/register" method="post" class="px-3">
                 <div class="mb-3">
                     <label for="inputUsername" class="form-label">Username (Parent/Guest)</label>
-                    <input type="text" class="form-control" placeholder="Enter your username"
+                    <input name="name" type="text" class="form-control" placeholder="Enter your username"
                         id="inputUsername">
                 </div>
                 <div class="mb-3">
                     <label for="inputPhone" class="form-label">Mobile Number (Parent/Guest)</label>
-                    <input type="text" class="form-control" placeholder="Enter your mobile number"
+                    <input name="phone" type="text" class="form-control" placeholder="Enter your mobile number"
                         id="inputPhone">
                 </div>
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Email (Parent/Guest)</label>
-                    <input type="email" class="form-control" placeholder="Enter your Email Address" 
+                    <input name="email" type="email" class="form-control" placeholder="Enter your Email Address" 
                         id="inputEmail">
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Password (Parent/Guest)</label>
-                    <input type="password" class="form-control" placeholder="Enter your password"
+                    <input name="password" type="password" class="form-control" placeholder="Enter your password"
                         id="inputPassword">
                 </div>
                 <div class="mb-3">
                     <label for="inputConfirmPassword" class="form-label">Confirm Password (Parent/Guest)</label>
-                    <input type="password" class="form-control" placeholder="Enter your password"
+                    <input name="confirmPassword" type="password" class="form-control" placeholder="Enter your password"
                         id="inputConfirmPassword">
                 </div>
                 <div class="row gap-1 px-2 mb-4">
