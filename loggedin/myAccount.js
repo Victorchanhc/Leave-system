@@ -8,7 +8,7 @@ async function loadParent() {
     const details = await res.json()
     const parentContent = document.querySelector('#parent-info-container')
 
-    parentContent.innerHTML = ''
+    // parentContent.innerHTML = ''
 
     for (let detail of details) {
         parentContent.innerHTML =
@@ -255,8 +255,6 @@ async function loadPlayer() {
                     </div>
                 </div>`;
 
-            
-
                 const submitButton = document.querySelectorAll('.updatePlayer-btn')
                 console.log(submitButton)
 
@@ -290,6 +288,37 @@ async function loadPlayer() {
     })
 }
 
+// async function loadLesson() {
+//     const res = await fetch('/getLesson') // Fetch from the correct url
+//     const details = await res.json()
+//     const lessonContent = document.querySelector('.lessonList')
+//     console.log(details)
+
+//     lessonContent.innerHTML = ''
+
+//     for (let detail of details) {
+//         lessonContent.innerHTML +=
+//         `<div class="col-md-4 mt-3">
+//             <div class="card card-body">
+//                 <div class="lessonInformation-content">
+//                     <h5 class="lessonName">${detail.name}</h5>
+//                     <div class="lessonVenus mb-1">${detail.venus}</div>
+//                     <div class="form-check">
+//                         <input class="form-check-input" type="radio" name="lessonTimeRadio1"
+//                             id="lessonTimeRadio1" value="option1" checked>
+//                         <label class="form-check-label" for="lessonTimeRadio1">
+//                             ${detail.start_time} - ${detail.end_time}
+//                         </label>
+//                     </div>
+//                     <div class="d-flex justify-content-end mt-3">
+//                         <a href="apply-lesson.html" class="btn btn-primary btn-sm" role="button">Join</a>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>`
+//     }
+// }
+
 document.querySelector('#updatePassword-btn')
     .addEventListener('click', async function () {
 
@@ -305,4 +334,5 @@ document.querySelector('#updatePassword-btn')
             body: JSON.stringify({ currentPW: currentPassword.value, newPW: newPassword.value, confirmPW: confirmPassword.value })
         });
         window.location.reload()
+        alert ("Change password successful");
     })

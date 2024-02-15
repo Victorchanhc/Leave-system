@@ -26,4 +26,9 @@
 
 .lessonInformation-content > div{
     font-size: small;
+    line-height: normal;
+}
+
+.lesson-content > div{
+    font-size: small;
 }

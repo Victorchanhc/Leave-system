@@ -5,7 +5,6 @@ import { Client } from 'pg';
 import dotenv from 'dotenv';
 import path from 'path';
 import { AdminIsLoggedIn, isLoggedIn } from './guard';
-
 const app = express()
 
 app.use(express.urlencoded({ extended: true }));
@@ -14,7 +13,7 @@ app.use(express.json());
 // Add this line
 app.use(
     expressSession({
-        secret: 'southteen fc leavesys',
+        secret: 'southteen fc leavesystem',
         resave: true,
         saveUninitialized: true,
     }),
@@ -37,6 +36,14 @@ interface Detail {
     password: string
     roles?: string
 }
+interface Lesson {
+    name: string
+    date: Date
+    start_time: string
+    end_time: string
+    venus: string
+
+}
 
 interface PlayerDetail {
     id : number
@@ -47,6 +54,19 @@ interface PlayerDetail {
     gender: string
 }
 
+interface HomePageList {
+    id: number
+    name: string
+    date: Date
+    start_time: string
+    end_time: string
+    venue: string
+    player_id: number
+    english_name: string
+    nick_name: string
+    
+}
+
 declare module 'express-session' {
     interface SessionData {
         counter?: number
@@ -54,7 +74,9 @@ declare module 'express-session' {
         admin?: string
         username: string
         name?: string
-    }
+        lessonName: string
+        lessonTime: string
+        }
 }
 
 app.post('/login', async (req, res) => {
@@ -90,7 +112,7 @@ app.post('/login', async (req, res) => {
     ) {
         req.session.user = req.body.email
         console.log(`${req.session?.user} is Logged in`)
-        res.redirect('/loggedIn.html')
+        res.redirect('/home.html')
     } else {
         res.redirect('/')
     }
@@ -151,7 +173,8 @@ export async function getPlayerDetail(req: express.Request, res: express.Respons
     try {
 
         const result = await client.query(
-            'select players.id, players.english_name, players.nick_name, players.chinese_name, players.date_of_birth, players.gender from players WHERE parent_id = (SELECT users.id FROM users WHERE users.email = $1)',
+            
+            'select players.id, players.english_name, players.nick_name, players.chinese_name, players.date_of_birth, players.gender from players WHERE parent_id = (SELECT users.id FROM users WHERE users.email = $1) ORDER BY id',
             [req.session.user]
         );
         const playerList: PlayerDetail[] = result.rows
@@ -195,6 +218,7 @@ async function editPlayer(req: express.Request, res: express.Response) {
 
 }
 
+
 async function changePW(req: express.Request, res: express.Response) {
     try {
         const currentPW = req.body.currentPW
@@ -237,14 +261,157 @@ app.post('/addNewPlayer', isLoggedIn, async (req, res) => {
 
     // window.alert("Registration Success");
     // io.emit("new-memo", "New memo created !!")
+    res.redirect('/apply-lesson.html')
+})
+
+async function getLesson(req: express.Request, res: express.Response) {
+    try {
+
+        const result = await client.query(
+            'SELECT * FROM lessons WHERE date > NOW() ORDER BY name'
+        );
+        const lessonList: Detail[] = result.rows
+        res.json(lessonList)
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: "cannot not get file" })
+    }
+}
+
+async function applyLesson(req: express.Request, res: express.Response) {
+    req.session.lessonName = req.body.name
+    req.session.lessonTime = req.body.start_time
+    res.redirect('/apply-lesson.html')
+}
+
+async function getApplyLesson(req: express.Request, res: express.Response) {
+    try {
+
+        const result = await client.query(
+            'SELECT * FROM lessons WHERE name = $1 AND start_time = $2 AND date > NOW() ',[req.session.lessonName, req.session.lessonTime]
+        );
+        const lessonList: Lesson[] = result.rows
+        res.json(lessonList)
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: "cannot not get file" })
+    }
+}
+
+app.post('/joinLesson', isLoggedIn, async function (req: express.Request, res: express.Response) {
+
+    const player = req.body.player
+    const lessons = req.body.lessons
+    
+    for (let lesson of lessons) {
+        
+        await client.query(
+        'INSERT INTO participants (player_id, lesson_id) VALUES ($1,$2)',
+        [player, lesson]
+    );
+    }
+    // window.alert("Registration Success");
+    // io.emit("new-memo", "New memo created !!")
     res.redirect('/lesson.html')
 })
 
+app.get('/getHomeDetail', isLoggedIn,async (req,res) => {
+    
+    const result = await client.query(
+        `SELECT participants.id, participants.lesson_id, lessons.name, lessons.date, lessons.start_time, 
+            lessons.end_time, lessons.venue, participants.player_id, 
+                players.english_name, players.nick_name, participants.status FROM lessons 
+            INNER JOIN participants 
+                ON lessons.id = participants.lesson_id
+            INNER JOIN players 
+                ON players.id = participants.player_id
+        WHERE players.parent_id = (SELECT users.id FROM users WHERE users.email = $1) AND lessons.date > NOW() AND participants.status = 'DEFAULT'
+            ORDER BY player_id,date ;`,[req.session.user]
+    );
+
+    const homePageInfo : HomePageList [] = result.rows
+    res.json(homePageInfo)
+})
+
+app.put('/requestLeave', isLoggedIn, async function requestLeave(req, res) {
+    
+    const originParticipantID = req.body.participant_id
+    const requestLessonID = req.body.lesson_id
+    const reason = req.body.reason
+    console.log(req.body)
+
+    await client.query(
+        `UPDATE participants 
+        SET request_lesson_id = $1, reason = $2, status = 'PENDING', updated_at = NOW()
+        WHERE id = $3 ;`,
+        [requestLessonID, reason, originParticipantID]
+    )
+    res.redirect('/home.html')
+})
+// Finish request leave lesson
+
+app.put('/deleteRequest', isLoggedIn, async function requestLeave(req, res) {
+    
+    const ParticipantID = req.body.participant_id
+    console.log(req.body)
+
+    await client.query(
+        `UPDATE participants 
+        SET request_lesson_id = null, reason = null, status = 'DEFAULT', updated_at = NOW()
+        WHERE id = $1 ;`,
+        [ParticipantID]
+    )
+    res.redirect('/home.html')
+})
+
+app.get('/getHomeRequestDetail', isLoggedIn,async (req,res) => {
+    
+    const result = await client.query(
+        `SELECT participants.id, participants.lesson_id, lessons.name, lessons.date, lessons.start_time, 
+            lessons.end_time, lessons.venue, participants.player_id, 
+                players.english_name, players.nick_name, participants.status FROM lessons 
+            INNER JOIN participants 
+                ON lessons.id = participants.lesson_id
+            INNER JOIN players 
+                ON players.id = participants.player_id
+        WHERE players.parent_id = (SELECT users.id FROM users WHERE users.email = $1) AND lessons.date > NOW() AND participants.status != 'DEFAULT'
+            ORDER BY player_id,date ;`,[req.session.user]
+    );
+
+    const homeRequestInfo : HomePageList [] = result.rows
+    res.json(homeRequestInfo)
+})
+
+app.get('/getRequestLesson', isLoggedIn,async (req,res) => {
+    
+    const result = await client.query(
+        `SELECT participants.id, participants.request_lesson_id, lessons.name, lessons.date, lessons.start_time, 
+            lessons.end_time, lessons.venue, participants.player_id, 
+                players.english_name, players.nick_name, participants.status FROM lessons 
+            INNER JOIN participants 
+                ON lessons.id = participants.request_lesson_id
+            INNER JOIN players 
+                ON players.id = participants.player_id
+        WHERE players.parent_id = (SELECT users.id FROM users WHERE users.email = $1) AND participants.status != 'DEFAULT'
+            ORDER BY player_id,date ;`,[req.session.user]
+    );
+
+    const homeRequestInfo : HomePageList [] = result.rows
+    res.json(homeRequestInfo)
+})
+
+
+
+app.use('/getLesson', isLoggedIn, getLesson)
 app.use('/getParent', isLoggedIn, getParentDetail)
 app.use('/getPlayer', isLoggedIn, getPlayerDetail)
 app.put('/editParent', isLoggedIn, editParent)
 app.put('/editPlayer/:id', isLoggedIn, editPlayer)
 app.use('/changePassword', isLoggedIn, changePW)
+app.use('/selectLesson', isLoggedIn, applyLesson)
+app.get('/applyLesson', isLoggedIn, getApplyLesson)
 
 app.get('/logout', function (req, res) {
     // destroy the user's session to log them out
@@ -253,6 +420,12 @@ app.get('/logout', function (req, res) {
         res.redirect('/');
     });
 });
+
+app.use((req, res) => {
+	res.status(404)
+	res.sendFile(path.resolve('./login/404.html'))
+})
+
 const PORT = 8080
 
 app.listen(PORT, () => {
