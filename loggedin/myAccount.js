@@ -4,7 +4,7 @@ window.onload = async () => {
 };
 
 async function loadParent() {
-    const res = await fetch('/getParent') // Fetch from the correct url
+    const res = await fetch('/parent') // Fetch from the correct url
     const details = await res.json()
     const parentContent = document.querySelector('#parent-info-container')
 
@@ -56,7 +56,7 @@ async function loadParent() {
     document.querySelector('#parent-EditButton')
         .addEventListener('click', async function () {
 
-            const res = await fetch('/getParent') // Fetch from the correct url
+            const res = await fetch('/parent') // Fetch from the correct url
             const parents = await res.json()
 
             // parentEdit.innerHTML = '';
@@ -104,7 +104,7 @@ async function loadParent() {
                     const updateEmail = document.querySelector('#parent-email')
                     const updatePhone = document.querySelector('#parent-phone')
 
-                    const res = await fetch(`/editParent`, {
+                    const res = await fetch(`/parent`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ async function loadParent() {
 }
 
 async function loadPlayer() {
-    const res = await fetch('/getPlayer') // Fetch from the correct url
+    const res = await fetch('/player') // Fetch from the correct url
     const players = await res.json()
     const playerContent = document.querySelector('#player-info-container')
 
@@ -188,7 +188,7 @@ async function loadPlayer() {
         player.addEventListener('click', async () => {
             
             const editPlayerContainer = document.querySelectorAll('.player-info')
-            const res = await fetch('/getPlayer') // Fetch from the correct url
+            const res = await fetch('/player') // Fetch from the correct url
             const players = await res.json()
             const id = players[index].id
             console.log([index])
@@ -272,7 +272,7 @@ async function loadPlayer() {
                         console.log(updateEnglishName[index])
                         console.log(id)
 
-                        const res = await fetch(`/editPlayer/${id}`, {
+                        const res = await fetch(`/player/${id}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -288,37 +288,6 @@ async function loadPlayer() {
     })
 }
 
-// async function loadLesson() {
-//     const res = await fetch('/getLesson') // Fetch from the correct url
-//     const details = await res.json()
-//     const lessonContent = document.querySelector('.lessonList')
-//     console.log(details)
-
-//     lessonContent.innerHTML = ''
-
-//     for (let detail of details) {
-//         lessonContent.innerHTML +=
-//         `<div class="col-md-4 mt-3">
-//             <div class="card card-body">
-//                 <div class="lessonInformation-content">
-//                     <h5 class="lessonName">${detail.name}</h5>
-//                     <div class="lessonVenus mb-1">${detail.venus}</div>
-//                     <div class="form-check">
-//                         <input class="form-check-input" type="radio" name="lessonTimeRadio1"
-//                             id="lessonTimeRadio1" value="option1" checked>
-//                         <label class="form-check-label" for="lessonTimeRadio1">
-//                             ${detail.start_time} - ${detail.end_time}
-//                         </label>
-//                     </div>
-//                     <div class="d-flex justify-content-end mt-3">
-//                         <a href="apply-lesson.html" class="btn btn-primary btn-sm" role="button">Join</a>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>`
-//     }
-// }
-
 document.querySelector('#updatePassword-btn')
     .addEventListener('click', async function () {
 
@@ -326,7 +295,7 @@ document.querySelector('#updatePassword-btn')
         const newPassword = document.querySelector('#new-password')
         const confirmPassword = document.querySelector('#confirm-password')
 
-        const res = await fetch(`/changePassword`, {
+        const res = await fetch(`/Password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -198,7 +198,7 @@ async function getRequestLesson() {
                     `<div class="card mt-2" id="${detail.player_id}${detail.id}">
                         <div class="card-body">
                             <div class="requestLesson-content container-fluid row" id="${detail.id}">
-                                <div class="col-md-1" style="font-size:medium">補堂</div>
+                                <div class="col-md-1 fw-bold" style="font-size:medium">補堂 </div>
                                 <div class="col-md-9 d-flex justify-content-between align-items-center">
                                     <div class="originLessonInfo-content" id="${detail.id},${detail.player_id}">
                                         
@@ -214,7 +214,7 @@ async function getRequestLesson() {
                                     </div>
                                 </div>
                                 <div class="requestStatus-content col-md-1 d-flex justify-content-center align-items-center">
-                                    <div class="requestStatus fw-bold">Status : ${detail.status}</div>
+                                    <div class="requestStatus fw-bold">Status : ${detail.status} ${detail.reason}</div>
                                 </div>
                                 <div class="col-md-1 d-flex align-items-center ">
                                     <button type="button" class="btn btn-sm btn-outline-danger " data-bs-toggle="modal" data-bs-target="#deleteRequest">
@@ -241,7 +241,6 @@ async function getRequestLesson() {
                             </div>   
                         </div>
                     </div>`
-                lessonName = detail.name
             }
         })
     }
@@ -270,18 +269,13 @@ async function getRequestOriginDetail() {
     }
     const requestLeaveBtns = document.querySelectorAll('.requestLeaveBtn')
     const confirmDeleteBtns = document.querySelectorAll('.confirmDeleteBtn')
-        console.log(confirmDeleteBtns)
 
     requestLeaveBtns.forEach((requestLeaveBtn, index) => {
         requestLeaveBtn.addEventListener('click', async () => {
-            console.log(requestLeaveBtn)
 
             const originLesson = document.querySelectorAll('.originLessonSelect')
             const requestLesson = document.querySelectorAll('.applyLessonSelect')
             const requestReason = document.querySelectorAll('.reasonSelect')
-            console.log(originLesson)
-            console.log(requestLesson)
-            console.log(requestReason)
 
             const res = await fetch(`/requestLeave`, {
                 method: 'PUT',
@@ -292,13 +286,12 @@ async function getRequestOriginDetail() {
             });
             window.location.reload()
             console.log("submit")
-        })
+        });
     })
     
 
     confirmDeleteBtns.forEach((confirmDeleteBtn, index) => {
         confirmDeleteBtn.addEventListener('click', async () => {
-            console.log(confirmDeleteBtns)
 
             const requestLessonContent = document.querySelectorAll('.requestLesson-content')
 
@@ -308,7 +301,7 @@ async function getRequestOriginDetail() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ participant_id: requestLessonContent[index].id })
-            });
+            })
             window.location.reload()
             console.log("Delete submit")
         })

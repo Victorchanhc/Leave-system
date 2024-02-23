@@ -2,18 +2,11 @@
 window.onload = async () => {
     getApplyLesson();
     getPlayer();
-
 }
 
 async function getApplyLesson() {
-    // should be inside window.onload
-    const searchParams = new URLSearchParams(location.search)
-    const userID = searchParams.get('user_id')
-    console.log(userID)
-    // // Use the id to fetch data from
     const res = await fetch(`/applyLesson`)
     const lessons = await res.json()
-
     const lessonContent = document.querySelector('.lessonInformation-content')
 
     lessonContent.innerHTML = ''
@@ -38,13 +31,12 @@ async function getApplyLesson() {
                 `,   ${lesson.date.substring(5, 10)}`;
             lessonIDContent.innerHTML +=
                 `,${lesson.id}`
-
         }
     }
 }
 
 async function getPlayer() {
-    const res = await fetch('/getPlayer')
+    const res = await fetch('/player')
     const playerList = await res.json()
 
     const participantsContainer = document.querySelector('.participantContainer')

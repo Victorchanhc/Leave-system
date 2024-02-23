@@ -4,7 +4,7 @@ const logcontainer = document.querySelector('#loginContainer')
 document.querySelector('#registerButton')
     .addEventListener('click', function () {
         logcontainer.innerHTML =
-            `<form action="/register" method="post" class="px-3">
+            `<form action="/parent" method="post" class="px-3">
                 <div class="mb-3">
                     <label for="inputUsername" class="form-label">Username (Parent/Guest)</label>
                     <input name="name" type="text" class="form-control" placeholder="Enter your username"
@@ -41,3 +41,8 @@ document.querySelector('#registerButton')
                         class="bi bi-arrow-right"></i></a>
             </div>`
     })
+
+
+
+    // alert("Invalid username or password");
+    //     document.querySelector("#form").reset();

@@ -27,28 +27,35 @@
             </div>
             <form action="/login" method="post" class="px-3">
                 <div class="form-floating mb-3">
-                    <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="d-grid gap-2 mb-4">
                     <button type="submit" class="col btn btn-primary">Login</button>
                     <!-- <a href="#">Forget password?</a> -->
                 </div>
-                
             </form>
+                <div class="px-3">
+                    <a href="/connect/google" class="btn btn-secondary container-fluid mb-3">
+                        <img src="./pic/google.png" alt="google-logo" style ="width:20px">
+                        Sign in With Google</a>
+                    <!-- <a href="/connect/google" class="btn btn-secondary container-fluid mb-3">Sign in With Google</a> -->
+                </div>
             <div class="forget-content container-fluid px-3 ">
-                <button type="button" class="col btn active container-fluid" data-bs-toggle="button" aria-pressed="true">Forget
-                    password</button>
+                <button type="button" class="col btn active container-fluid" data-bs-toggle="button" aria-pressed="true">
+                    Forget password</button>
+                
             </div>
-            <div class="register-content container-fluid">
+            <div class="register-content container-fluid px-3 mt-2">
                 Don't have an account ? Register now !
                 <div id="registerButton" type="button" class="btn btn-outline-light btn-sm ">Register
                     <i class="bi bi-arrow-right"></i>
                 </div>
+                
             </div>
         </div>
     </div>
