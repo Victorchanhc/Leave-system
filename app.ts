@@ -46,8 +46,8 @@ declare module 'express-session' {
         name?: string
         lessonName: string
         lessonTime: string
-        grant:any 
-        }
+        grant?: any
+    }
 }
 
 const grantExpress = grant.express({
@@ -70,20 +70,13 @@ app.use(grantExpress);
 app.use('/', loginRoutes)
 app.use(express.static('login'))
 
-app.get('/admin', AdminIsLoggedIn, function (req, res) {
-    if (req.session.admin) {
-        res.sendFile(path.resolve('./admin/admin-index.html'))
-    } else {
-        res.json({ msg: "You have no permission!!" })
-    }
-})
 
-app.use(isLoggedIn, express.static('loggedIn'))
+app.use('/parent', parentRoutes)
+app.use(isLoggedIn, express.static('logged_in'))
 
 app.use('/player', playerRoutes)
-app.use('/parent', parentRoutes)
 
-app.put('/Password', isLoggedIn, changePassWord)
+app.put('/password', isLoggedIn, changePassWord)
 app.get('/getLesson', isLoggedIn, getLesson)
 app.use('/selectLesson', isLoggedIn, selectLesson)
 app.get('/applyLesson', isLoggedIn, applyLesson)
@@ -94,7 +87,8 @@ app.put('/deleteRequest', isLoggedIn, deleteRequest)
 app.get('/getHomeRequestDetail', isLoggedIn, getHomeRequestDetail)
 app.get('/getRequestLesson', isLoggedIn, getRequestLesson)
 
-app.use(AdminIsLoggedIn, express.static('admin'))
+// /admin/**
+app.use("/admin", AdminIsLoggedIn, express.static('admin'))
 
 app.use('/adminLesson', adminLessonRoutes)
 

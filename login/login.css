@@ -13,3 +13,11 @@
 .bandLogo-content {
     width: 120px;
 }
+
+body {
+    background-image: url(./pic/loginbackground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50%;
+}

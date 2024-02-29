@@ -21,6 +21,7 @@ async function loadParent() {
                             </div>
                             <div>
                                 <label for="parent-name" class="form-label">Parent Name</label>
+                                <input name="name" type="text" class="form-control" id="parent-name" value="${detail.name}" disabled>
                                 <div class="parent-name" id="parent-name">${detail.name}</div>
                             </div>
                         </div>
@@ -123,6 +124,7 @@ async function loadPlayer() {
 
     playerContent.innerHTML = ''
 
+    // Can use disabled input field to mimick the detail and edit transition.
     for (let player of players) {
         playerContent.innerHTML +=
             `<div class="card mb-3 player-info">
@@ -191,6 +193,8 @@ async function loadPlayer() {
             const res = await fetch('/player') // Fetch from the correct url
             const players = await res.json()
             const id = players[index].id
+
+            // Removed console.log
             console.log([index])
             console.log(players[index].english_name)
             console.log(players[index])
@@ -261,6 +265,7 @@ async function loadPlayer() {
                 submitButton.forEach((button, index)=>{
                     button.addEventListener('click', async function () {
 
+                        // Use form to wrap all of the inputs
                         const updateEnglishName = document.querySelectorAll('.newFullName')
                         const updateNickName = document.querySelectorAll('.newNickName')
                         const updateChineseName = document.querySelectorAll('.newChineseName')
@@ -295,7 +300,8 @@ document.querySelector('#updatePassword-btn')
         const newPassword = document.querySelector('#new-password')
         const confirmPassword = document.querySelector('#confirm-password')
 
-        const res = await fetch(`/Password`, {
+        // avoid abbreviation
+        const res = await fetch(`/password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

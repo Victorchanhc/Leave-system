@@ -25,6 +25,7 @@ export interface PlayerDetail {
     gender: string
 }
 
+// Good to create interface for join result set
 export interface HomePageList {
     id: number
     name: string

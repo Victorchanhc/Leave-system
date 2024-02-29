@@ -31,7 +31,13 @@ export async function addNewPlayer (req: express.Request, res: express.Response)
 
     try{
         await client.query(
-                'INSERT INTO players (english_name,nick_name,chinese_name,date_of_birth,gender,parent_id) values ($1,$2,$3,$4,$5,(SELECT id FROM users WHERE users.email = $6))',
+                `INSERT INTO players (english_name,
+                                    nick_name,
+                                    chinese_name,
+                                    date_of_birth,
+                                    gender,
+                                    parent_id) 
+                    values ($1,$2,$3,$4,$5,(SELECT id FROM users WHERE users.email = $6))`,
                 [req.body.englishFullName, req.body.nickName, req.body.chineseFullName, req.body.dateOfBirth, req.body.gender, req.session.user]
             );
             res.redirect('/apply-lesson.html')

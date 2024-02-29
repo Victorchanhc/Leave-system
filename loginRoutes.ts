@@ -1,45 +1,27 @@
 import express from "express";
 import { client } from "./app";
 import { Detail } from "./interface";
-import { Session } from 'express-session';
-import fetch from 'cross-fetch';
 import crypto from 'crypto';
 
 export const loginRoutes = express.Router()
-
-// declare module 'express-session' {
-//     export interface SessionData {
-//         counter?: number
-//         user?: string
-//         admin?: string
-//         username: string
-//         name?: string
-//         lessonName: string
-//         lessonTime: string
-//         }
-// }
-export interface ExpressSession extends Session {
-    grant? :{[key:string]:any}
-}
 
 loginRoutes.post('/login', login)
 loginRoutes.get('/logout', logout)
 
 loginRoutes.get('/login/google', async (req,res) => {
 
-    const session:ExpressSession = req.session;
+    const session = req.session;
     if (session != null ) {
-        const accessResponse = req.session.grant.response
+        const accessResponse = req.session['grant'].response
         const accessToken = accessResponse.access_token
         console.log(accessToken)
     
         const fetchRes = await fetch('https://www.googleapis.com/oauth2/v2/userinfo',{
-            method:"get",
             headers:{
                 "Authorization":`Bearer ${accessToken}`
             }
         });
-        const result = await fetchRes.json();
+        const result = await fetchRes.json() as {email:String};
         let [ user ]= (await client.query(`SELECT * FROM users WHERE users.email = $1`,[result.email])).rows;
         
         if(!user){
@@ -64,10 +46,10 @@ async function login(req:express.Request, res:express.Response) {
         [req.body.email]
     );
     const userList: Detail[] = result.rows
-    console.log(result.rows)
-    console.log(req.body.email)
-    console.log(req.body.password)
+    // console.log(req.body.password) 
+    // Do not console.log password to log
 
+    // Should use Bcrypt
     if (
         userList.some(
             (user) =>
@@ -76,6 +58,13 @@ async function login(req:express.Request, res:express.Response) {
         )
     ) {
         req.session.admin = req.body.email
+
+        // Can use the following session instead.
+        // req.session.user = {
+        //     email: req.body.email,
+        //     roles: req.body.roles
+        // }
+        // Even better to store id instead of email for sessions
         console.log(`Admin ${req.session?.admin} is Logged in`)
         res.redirect('/admin')
     } else if (

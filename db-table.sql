@@ -6,7 +6,7 @@ SELECT * FROM users where updated_at = null
 
 SELECT * FROM players
 
-\d+
+--\d+
 
 DELETE FROM participants WHERE id > 2;
 
@@ -108,7 +108,7 @@ DROP TABLE request_lesson;
 
 SELECT * FROM request_lesson;
 
-get apply
+-- get apply
 SELECT request_lesson.id, request_lesson.player_id, lessons.name, lessons.date, lessons.start_time, lessons.end_time, lessons.venue, status FROM request_lesson 
 INNER JOIN participants
     ON participant_id = participants.id
@@ -120,7 +120,7 @@ WHERE players.parent_id = (SELECT users.id FROM users WHERE users.email = 'pk123
 
 
 
-get origin
+-- get origin
 SELECT request_lesson.id, request_lesson.player_id, lessons.name, lessons.date, lessons.start_time, lessons.end_time, lessons.venue, status FROM request_lesson 
             INNER JOIN lessons
                 ON apply_lesson_id = lessons.id
@@ -141,7 +141,7 @@ SELECT participants.id, participants.request_lesson_id, lessons.name, lessons.da
             ORDER BY player_id,date ;
 
 
-get all request
+-- get all request
 
 SELECT participants.id, participants.request_lesson_id, lessons.name, lessons.date, lessons.start_time, 
             lessons.end_time, lessons.venue, participants.player_id, 
@@ -153,7 +153,7 @@ SELECT participants.id, participants.request_lesson_id, lessons.name, lessons.da
 WHERE participants.status != 'DEFAULT'
     ORDER BY player_id,date ;
 
-get all request origin lesson info
+-- get all request origin lesson info
 
 SELECT participants.id, participants.lesson_id, participants.request_lesson_id, lessons.name, lessons.date, lessons.start_time, 
             lessons.end_time, lessons.venue, participants.player_id, 

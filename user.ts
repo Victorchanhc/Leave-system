@@ -9,15 +9,15 @@ export async function changePassWord(req: express.Request, res: express.Response
         const confirmPW = req.body.confirmPW
         const result = await client.query('select users.password from users WHERE users.email = $1',
             [req.session.user]);
-        const password: Detail[] = result.rows
+        const passwords: Detail[] = result.rows
 
-        if (
-            password.some(
-                (user) =>
-                    user.password === currentPW &&
-                    newPW === confirmPW
-            )
-        ) {
+        // Array -> 1. Get the first one 2. Do something with every elements
+        if(passwords.length === 0){
+            throw new Error("No User found with the email "+ req.session.user)
+        }
+        const password = passwords[0]
+
+        if (password === currentPW && newPW === confirmPW) {
             await client.query(
                 'UPDATE users SET password = $1 ,updated_at = NOW() WHERE users.email = $2',
                 [newPW, req.session.user]);
@@ -37,6 +37,8 @@ export async function changePassWord(req: express.Request, res: express.Response
 export async function getLesson(req: express.Request, res: express.Response) {
     try {
 
+
+        // allow showing rows from the past. But can filter in the frontend
         const result = await client.query(
             'SELECT * FROM lessons WHERE date > NOW() ORDER BY name,date'
         );
@@ -106,8 +108,8 @@ export async function getHomeDetail (req:express.Request, res:express.Response){
                     ORDER BY player_id, name, date ;`,[req.session.user]
             );
 
-            const homePageInfo : HomePageList [] = result.rows
-            res.json(homePageInfo)
+        const homePageInfo : HomePageList [] = result.rows
+        res.json(homePageInfo)
     } catch (err) {
         console.log(err)
         res.status(500).json({ msg: "cannot not get data" })
@@ -193,6 +195,28 @@ export async function getRequestLesson(req:express.Request,res:express.Response)
         WHERE players.parent_id = (SELECT users.id FROM users WHERE users.email = $1) AND participants.status != 'DEFAULT'
             ORDER BY player_id,date ;`,[req.session.user]
     );
+
+    // Can use the following to join lessons twice
+    const combineResult = await client.query(
+        `   SELECT 
+                participants.id, participants.request_lesson_id, participants.player_id, 
+                players.english_name, players.nick_name, participants.status, participants.reason,
+
+                lessons.name as lesson_name,
+                lessons.date as lesson_date,
+
+                request_lessons.name as request_lesson_name,
+                request_lessons.date as request_lesson_date,
+
+                FROM participants
+                INNER JOIN lessons on lessons.id = participants.lesson_id
+                INNER JOIN lessons request_lessons on request_lessons.id =  participants.request_lesson_id           
+                INNER JOIN players
+                    ON players.id = participants.player_id
+        `
+    )
+
+    console.log(combineResult)
 
     const homeRequestInfo : HomePageList [] = result.rows
     res.json(homeRequestInfo)

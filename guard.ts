@@ -21,6 +21,7 @@ export const AdminIsLoggedIn = (
     if (req.session?.admin) {
         next()
     } else {
+        console.log("Redirect by AdminisLoggedIn")
         res.redirect('/')
     }
 }
@@ -30,10 +31,14 @@ export const isLoggedIn = (
 	res: express.Response,
 	next: express.NextFunction
 ) => {
+    
+    console.log(req.session)
 	if (req.session?.user || req.session?.admin) {
+
         next()
 	
 	} else {
+        console.log("Redirect by isLoggedIn")
 		res.redirect('/')
 	}
 }

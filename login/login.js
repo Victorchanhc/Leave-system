@@ -3,6 +3,7 @@ const logcontainer = document.querySelector('#loginContainer')
 
 document.querySelector('#registerButton')
     .addEventListener('click', function () {
+        // Should have another html , maybe called register.html
         logcontainer.innerHTML =
             `<form action="/parent" method="post" class="px-3">
                 <div class="mb-3">
