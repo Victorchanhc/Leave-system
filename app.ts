@@ -11,7 +11,7 @@ import { applyLesson, changePassWord, deleteRequest,
      getRequestLesson, joinLesson, requestLeave, selectLesson } from './user';
 import { playerRoutes } from './playerRoutes';
 import { parentRoutes } from './parentRoutes';
-import { adminLessonRoutes } from './adminlessonRoutes';
+import { adminLessonRoutes } from './adminLessonRoutes';
 import grant from 'grant';
 import { loginRoutes } from './loginRoutes';
      

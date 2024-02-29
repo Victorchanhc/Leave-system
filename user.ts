@@ -74,7 +74,7 @@ export async function joinLesson (req: express.Request, res: express.Response) {
 
     try{
         const player = req.body.player
-            const lessons = req.body.lessons
+        const lessons = req.body.lessons
             
             for (let lesson of lessons) {
                 
